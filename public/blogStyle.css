@@ -1,0 +1,163 @@
+#heart-button{
+  color:#a3a299;
+}
+
+#heart-button.liked{
+  color:red;
+}
+
+.registration,.login, .update-blog, .no-blog{
+   padding: 50px;
+   font-family:'Courier New', Courier, monospace;
+   font-size: large;
+   font-weight: bolder;
+    
+}
+
+.website-name{
+  text-align: center;
+  padding: 10px;
+  color:darkslategray;
+  background-color:blanchedalmond;
+  font-family:'Courier New', Courier, monospace;
+  font-weight:bolder;
+}
+
+.homepage-content,.create-blog{
+  padding: 50px;
+  font-family:'Courier New', Courier, monospace;
+  font-size: large;
+  font-weight: bold;
+  align-content: center;
+}
+
+.homepage-button,.instruction{
+  padding-top: 10px;
+}
+
+h1,h3{
+  font-family:'Courier New', Courier, monospace;
+  font-size: medium;
+  font-weight: bolder;
+  
+}
+
+p{
+  font-family:'Courier New', Courier, monospace;
+  font-size: small;
+  font-weight: bold;
+}
+
+.form-group,.login-link{
+  font-family:'Courier New', Courier, monospace;
+  font-size: small;
+  font-weight: bold;
+}
+
+.main-top{
+  padding: 10px;
+  color:darkslategray;
+  background-color:blanchedalmond;
+  font-family:'Courier New', Courier, monospace;
+  font-weight:bolder;
+  display: flex;
+}
+
+.homepage-quote{
+  color: antiquewhite;
+}
+
+
+.word2 {
+    margin-left: 20px;
+  }
+.logout{
+  margin-left: 1050px;
+}
+
+body {
+    background-image: url('/images/mountain.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+.blog-element{
+  font-family:'Courier New', Courier, monospace;
+  font-size: large;
+  font-weight: bold;
+}
+
+.profile-top{
+  text-align: left;
+  padding: 10px;
+  color:darkslategray;
+  background-color:blanchedalmond;
+  font-family:'Courier New', Courier, monospace;
+  font-weight:bolder;
+  display: flex;
+}
+
+#delete-blog,#update-blog{
+  font-family:'Courier New', Courier, monospace;
+}
+
+.userblog-message{
+  padding-left: 10px;
+  font-size: large;
+  font-weight: bolder;
+}
+
+
+.higher-area{
+  justify-content: center;
+  align-items: center;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+}
+
+.blog-image{
+   display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30px;
+  border-image: url(border.png) 30 round;
+  text-align: center;
+  align-content: center;
+}
+
+.blog-content{
+  text-align: center;
+  align-content: center;
+}
+
+.imagetitle{
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.lower-area{
+  background-color: black;
+  opacity: 0.5;
+  font-family: 'Courier New', Courier, monospace;
+  color: antiquewhite;
+  padding: 20px;
+  z-index:-1;
+}
+.comments{
+  background-color: antiquewhite;
+  color:black;
+  padding: 20px
+}
+
+.next{
+  font-family: 'Courier New', Courier, monospace;
+  margin-left: 20px;
+  opacity: 1.0;
+}
+
+.logout{
+  border: none;
+  background-color: inherit;
+  
+}

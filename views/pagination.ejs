@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/blogStyle.css' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" 
+    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" 
+    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Blogs</title>
+</head>
+<body>
+    <div class="main-top">
+        <a href="/myblog/main/homepage"><h2 class="word1">Home</h2>
+        <a href="/myblog/main/my_blogs"><h2 class="word2">Profile</h2></a>
+    </div>
+
+    <div class="higher-area">
+    <% docsSnapshot.forEach(function(blog){ %>
+    <h2><%=blog.get("blogTitle")%></h2>
+      <p style="text-decoration: underline;">by <%=blog.get("userEmail")%></p>
+      <p>Likes:<%=blog.get("likes")%></p>
+      <button id="heart-button" ><i class="fa fa-heart"></i></button>
+    </div>
+          <img class="blog-image" src ="<%=blog.get("image")%> class="center img-fluid img-thumbnail" width ="400" height="250">
+            <p class="imagetitle" style="color:antiquewhite"><%=blog.get("imageTitle")%></p>
+      <div class="lower-area">
+                <div class= "blog-content container-fluid my-4 col-md-12">
+                  <h4 class="blogsubheader"><%=blog.get("blogSubheader")%></h4>
+                    <p id="summary-text"><%=blog.get("blog")%> </p>
+                </div> 
+                 <div class="container-fluid my-4 col-md-12">
+                  <div class="comments">
+                  <h6 style="font-weight: bold; text-decoration: underline;">Comments</h6>
+                      <% blog.get("comment").forEach(function(comment){ %>             
+                        <p><%=comment.commentor%>: <%=comment.comment%></p>
+                      <%})%>
+                      </div>
+          <form id="commentForm" method ="POST" action="/myblog/comment/<%=blog.id%>">
+              <div class="enter-email">
+                <label for="inputEmail3" class="col-sm-2 control-label">Share your comment!</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="comment" name="comment" placeholder="Comment here" style="color: black;">
+              </div>
+                <div class="form-group">
+                   <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="submit btn-primary">Submit</button>
+                    </div>
+                </div>
+              </div>
+          </form>
+        </div>
+         <a href="/myblog/main/blogs"><button type="button" class="next btn-danger">Next</button></a>
+      </div>
+         <script>
+          const heartButton = document.getElementById('heart-button');
+         // const heartCount = document.getElementById('heart-count');
+          let liked = false;
+          let clicks = 0;
+          let countValue = 0;
+          heartButton.addEventListener('click', () => {
+            event.preventDefault();
+            liked =!liked
+           heartButton.classList.toggle('liked',liked);
+            clicks++;
+            if (clicks % 2 === 1) {
+            //countValue++;
+
+            fetch('/myblog/likes/<%=blog.id%>',{
+                method: 'POST'
+              }).then(res => res.text())
+              .then(html => console.log(html))
+              .catch(err => console.error(err))
+              
+            } else {
+            //countValue--;
+             fetch('/myblog/likes/<%=blog.id%>',{
+                method: 'DELETE'
+              }).then(res => res.text())
+              .then(html => console.log(html))
+              .catch(err => console.error(err))
+                
+            }
+           // heartCount.textContent = countValue;
+          });
+         </script>
+          <% }); %>
+         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

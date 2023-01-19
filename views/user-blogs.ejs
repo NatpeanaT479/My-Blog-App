@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel='stylesheet' href='/blogStyle.css' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" 
+    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" 
+    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/661d5e8174.js" crossorigin="anonymous"></script>
+    <title>My Blog Titles</title>
+  </head>
+<body>
+    <div class="main-top">
+        <a href="/myblog/main/homepage"><h2 class="word1">Home</h2>
+        <a href="/myblog/main/create_blog"><h2 class="word2">Create Blog</h2></a>
+    </div>
+    <div class="userblog-message">
+      <h3 style="font-family: 'Courier New', Courier, monospace;"><%=message%></h3>
+   </div>
+          <% docsSnapshot.forEach(function(blog){ %>
+            <div class="blogtitle col-sm-6 col-md-4">
+              <div class="thumbnail">
+                <p style="font-size: large;"><%= blog.get("blogTitle") %></p>
+                      <p><a href="/myblog/main/my_blogs/<%= blog.id %>" class="btn btn-primary">Details</a></p>
+                      <button id="delete-blog" onclick="document.location='/myblog/main/homepage'">Delete blog <i class="fa fa-trash"></i></button>
+                        <button id="update-blog" onclick="document.location='/myblog/main/update_blog/<%= blog.id %>'">Update blog <i class="fa-solid fa-pen"></i></button>
+                  </div>
+              </div>
+            </div>
+       
+            <script>
+                const deleteBlog = document.getElementById('delete-blog');
+                      deleteBlog.addEventListener('click',(event)=>{
+                        fetch('/myblog/main/delete_blog/<%=blog.id%>',{
+                        method: 'DELETE'
+                      }).then(res => res.text())
+                      .then(html => console.log(html))
+                      .catch(err => console.error(err))
+                      });
+              </script>
+          <% }); %>
+    
+</body>
+</html>
